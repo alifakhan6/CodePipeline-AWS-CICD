@@ -10,3 +10,5 @@ if [ -n "$containerID" ]; then
 else
   echo "No running container found with the name simple-python-flask-app"
 fi
+
+
