@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLOps App Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1">MlOps Pipeline POC - ALIFA Khan</span>
+    </nav>
+
+    <!-- Form Container -->
+    <div class="container mt-5">
+        <h1 class="text-center">AVALON Measurement Input Form</h1>
+        <form method="POST" class="mt-4">
+            <div class="row">
+                <!-- Measurements in mm -->
+                <div class="col-md-6">
+                    <h3>Measurements (in mm)</h3>
+                    <div class="form-group">
+                        <label for="length">Length (mm):</label>
+                        <input type="number" step="any" id="length" name="length" class="form-control" value="5.8" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="diameter">Diameter (mm):</label>
+                        <input type="number" step="any" id="diameter" name="diameter" class="form-control" value="0.8" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="height">Height (mm):</label>
+                        <input type="number" step="any" id="height" name="height" class="form-control" value="1.2" required>
+                    </div>
+                </div>
+
+                <!-- Weights in grams -->
+                <div class="col-md-6">
+                    <h3>Weight (in grams)</h3>
+                    <div class="form-group">
+                        <label for="whole_weight">Whole Weight (g):</label>
+                        <input type="number" step="any" id="whole_weight" name="whole_weight" class="form-control" value="2.3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shucked_weight">Shucked Weight (g):</label>
+                        <input type="number" step="any" id="shucked_weight" name="shucked_weight" class="form-control" value="1.5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="viscera_weight">Viscera Weight (g):</label>
+                        <input type="number" step="any" id="viscera_weight" name="viscera_weight" class="form-control" value="0.9" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shell_weight">Shell Weight (g):</label>
+                        <input type="number" step="any" id="shell_weight" name="shell_weight" class="form-control" value="1.0" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gender Selection -->
+            <div class="form-group mt-4">
+                <h3>Gender</h3>
+                <label for="gender">Select Gender:</label>
+                <select id="gender" name="gender" class="form-control" required>
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+        </form>
+
+        <!-- Displaying API Response -->
+        {% if result %}
+            <div class="mt-5">
+                <h2 class="text-center">API Response</h2>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        {% if result.error %}
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Error:</strong> {{ result.message }}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-success" role="alert">
+                                <strong>Predicted age:</strong> {{ result.prediction }} Years<br>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 p-3 text-center">
+        <p class="mb-0">© 2024 MLOps App. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

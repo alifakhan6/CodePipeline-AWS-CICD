@@ -5,6 +5,7 @@ env:
     DOCKER_REGISTRY_USERNAME: /myapp/docker-credentials/username
     DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
     DOCKER_REGISTRY_URL: /myapp/docker-registry/url
+
 phases:
   install:
     runtime-versions:
@@ -24,9 +25,7 @@ phases:
   post_build:
     commands:
       - echo "Build completed successfully!"
+
 artifacts:
   files:
     - '**/*'
-
-
-
